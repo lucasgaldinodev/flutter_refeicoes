@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-
 import '../models/category.dart';
 import '../utils/app_routes.dart';
 
 class CategoryItem extends StatelessWidget {
   final Category category;
-
   CategoryItem(this.category);
 
   void _selectCategory(BuildContext context) {
@@ -20,7 +18,7 @@ class CategoryItem extends StatelessWidget {
     return InkWell(
       onTap: () => _selectCategory(context),
       splashColor: Theme.of(context).primaryColor,
-      borderRadius: BorderRadius.circular(15),
+      borderRadius: BorderRadius.circular(25),
       child: Container(
         padding: const EdgeInsets.all(15),
         child: Text(
@@ -28,14 +26,14 @@ class CategoryItem extends StatelessWidget {
           style: Theme.of(context).textTheme.headline6,
         ),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(25),
           gradient: LinearGradient(
             colors: [
-              category.color.withOpacity(0.5),
+              category.color.withOpacity(0.45),
               category.color,
             ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+            begin: Alignment.bottomRight,
+            end: Alignment.topLeft,
           ),
         ),
       ),

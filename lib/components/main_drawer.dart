@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../utils/app_routes.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -12,9 +11,7 @@ class MainDrawer extends StatelessWidget {
       title: Text(
         label,
         style: TextStyle(
-          fontFamily: 'RobotoCondensed',
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
+          fontSize: 20,
         ),
       ),
       onTap: onTap,
@@ -31,25 +28,23 @@ class MainDrawer extends StatelessWidget {
             width: double.infinity,
             padding: EdgeInsets.all(20),
             color: Theme.of(context).accentColor,
-            alignment: Alignment.bottomRight,
+            alignment: Alignment.bottomCenter,
             child: Text(
-              'Vamos Cozinhar?',
+              "Let's Cook?",
               style: TextStyle(
-                fontWeight: FontWeight.w900,
-                fontSize: 30,
-                color: Theme.of(context).primaryColor,
+                fontSize: 28,
               ),
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           _createItem(
             Icons.restaurant,
-            'Refeições',
+            'Meals',
             () => Navigator.of(context).pushReplacementNamed(AppRoutes.HOME),
           ),
           _createItem(
             Icons.settings,
-            'Configurações',
+            'Settings',
             () => Navigator.of(context).pushReplacementNamed(AppRoutes.SETINGS),
           ),
         ],

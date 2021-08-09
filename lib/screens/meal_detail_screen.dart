@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-
 import '../models/meal.dart';
 
 class MealDetailScreen extends StatelessWidget {
   final Function(Meal) onToggleFavorite;
   final bool Function(Meal) isFavorite;
-
   const MealDetailScreen(this.onToggleFavorite, this.isFavorite);
 
   Widget _createSectionTitle(BuildContext context, String title) {
@@ -18,14 +16,17 @@ class MealDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _createSectionContainer(Widget child) {
+  Widget _createSectionContainer(BuildContext context, Widget child) {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+
     return Container(
-      width: 330,
-      height: 250,
+      width: width * 0.9,
+      height: height * 0.25,
       padding: EdgeInsets.all(10),
       margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.grey[800],
         border: Border.all(color: Colors.grey),
         borderRadius: BorderRadius.circular(10),
       ),
@@ -36,6 +37,8 @@ class MealDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final meal = ModalRoute.of(context)!.settings.arguments as Meal;
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
@@ -45,15 +48,17 @@ class MealDetailScreen extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: 300,
+              //height: 300,
+              height: height * 0.3,
               width: double.infinity,
               child: Image.network(
                 meal.imageUrl,
                 fit: BoxFit.cover,
               ),
             ),
-            _createSectionTitle(context, 'Ingredientes'),
+            _createSectionTitle(context, 'Ingredients'),
             _createSectionContainer(
+              context,
               ListView.builder(
                 itemCount: meal.ingredients.length,
                 itemBuilder: (ctx, index) {
@@ -70,8 +75,9 @@ class MealDetailScreen extends StatelessWidget {
                 },
               ),
             ),
-            _createSectionTitle(context, 'Passos'),
+            _createSectionTitle(context, 'Steps'),
             _createSectionContainer(
+              context,
               ListView.builder(
                 itemCount: meal.steps.length,
                 itemBuilder: (ctx, index) {
@@ -79,7 +85,9 @@ class MealDetailScreen extends StatelessWidget {
                     children: [
                       ListTile(
                         leading: CircleAvatar(
-                          child: Text('${index + 1}'),
+                          backgroundColor: Colors.pink[800],
+                          child: Text('${index + 1}',
+                              style: TextStyle(color: Colors.white)),
                         ),
                         title: Text(meal.steps[index]),
                       ),
@@ -89,6 +97,7 @@ class MealDetailScreen extends StatelessWidget {
                 },
               ),
             ),
+            SizedBox(height: height * 0.11),
           ],
         ),
       ),

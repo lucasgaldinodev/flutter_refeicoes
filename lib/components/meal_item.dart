@@ -1,26 +1,16 @@
 import 'package:flutter/material.dart';
-
 import '../models/meal.dart';
 import '../utils/app_routes.dart';
 
 class MealItem extends StatelessWidget {
   final Meal meal;
-
   const MealItem(this.meal);
 
   void _selectMeal(BuildContext context) {
-    Navigator.of(context)
-        .pushNamed(
+    Navigator.of(context).pushNamed(
       AppRoutes.MEAL_DETAIL,
       arguments: meal,
-    )
-        .then((result) {
-      if (result == null) {
-        print('Sem resultado!');
-      } else {
-        print('O nome da refeição é $result.');
-      }
-    });
+    );
   }
 
   @override
@@ -49,24 +39,28 @@ class MealItem extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                Positioned(
-                  bottom: 20,
-                  right: 10,
+                ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(15),
+                    topRight: Radius.circular(15),
+                  ),
                   child: Container(
-                    width: 300,
+                    width: double.infinity,
                     color: Colors.black54,
-                    padding: EdgeInsets.symmetric(
-                      vertical: 5,
-                      horizontal: 20,
+                    padding: EdgeInsets.only(
+                      top: 3,
+                      left: 5,
                     ),
-                    child: Text(
-                      meal.title,
-                      style: TextStyle(
-                        fontSize: 26,
-                        color: Colors.white,
+                    child: Center(
+                      child: Text(
+                        meal.title,
+                        style: TextStyle(
+                          fontSize: 22,
+                          color: Colors.white,
+                        ),
+                        softWrap: true,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      softWrap: true,
-                      overflow: TextOverflow.fade,
                     ),
                   ),
                 ),
