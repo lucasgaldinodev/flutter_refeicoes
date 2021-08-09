@@ -37,7 +37,6 @@ class MealDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final meal = ModalRoute.of(context)!.settings.arguments as Meal;
-    var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
 
     return Scaffold(
